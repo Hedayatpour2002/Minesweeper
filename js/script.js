@@ -139,8 +139,9 @@ function processSquare(square) {
   }
 }
 
-function endgame() {
+function loseGame() {
   alert("Game ended");
+  $.body.classList.add("lose");
 }
 
 /* This function shows all the mines on the board. */
@@ -187,7 +188,7 @@ mineSweeperBoard.addEventListener("click", (e) => {
       })
     ) {
       showMine();
-      endgame();
+      loseGame();
       return;
     }
 
@@ -199,7 +200,9 @@ mineSweeperBoard.addEventListener("click", (e) => {
     if (
       square.classList.contains("open") ||
       square.classList.contains("flag") ||
-      square.classList.contains("showMine")
+      square.classList.contains("showMine") ||
+      $.body.classList.contains("win") ||
+      $.body.classList.contains("lose")
     ) {
     } else {
       /*
@@ -230,7 +233,9 @@ mineSweeperBoard.addEventListener("contextmenu", (e) => {
     */
     if (
       square.classList.contains("open") ||
-      square.classList.contains("showMine")
+      square.classList.contains("showMine") ||
+      $.body.classList.contains("win") ||
+      $.body.classList.contains("lose")
     ) {
     } else {
       square.classList.toggle("flag");
