@@ -1,0 +1,59 @@
+html {
+  box-sizing: border-box;
+  font-size: 10px;
+}
+*,
+*::after,
+*::before {
+  box-sizing: inherit;
+}
+body {
+  font-family: sans-serif;
+  line-height: 1.6;
+  font-size: 1.6rem;
+}
+
+/* 
+
+  --> Reset Style <-- 
+
+*/
+
+/* 
+
+  --> Helper Class <--
+
+*/
+
+/* 
+
+  --> App Style <--
+
+*/
+.container {
+  width: 100%;
+  padding-right: 1.5rem;
+  padding-left: 1.5rem;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.mineSweeper {
+  height: 100vh;
+  background-color: #bfbfbf;
+}
+.mineSweeper__map {
+  display: flex;
+  flex-wrap: wrap;
+}
+.square {
+}
+.showMine {
+  background-color: red;
+}
+.flag {
+  background-color: yellow;
+}
+.open {
+  background-color: green;
+}
