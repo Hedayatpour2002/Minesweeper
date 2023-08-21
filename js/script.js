@@ -163,9 +163,10 @@ function selectMineWithNumber(number) {
   return document.querySelector(`[data-number = "${number}"]`);
 }
 
-/* This function is called when the player clicks on a square. */
-function clickSquare(e) {
+mineSweeperBoard.addEventListener("click", (e) => {
   /*
+    This function is called when the player clicks on a square.
+
     The function takes the event object as an argument and opens the square if it does not contain a mine.
 
     If the square contains a mine, the game ends.
@@ -207,15 +208,12 @@ function clickSquare(e) {
       processSquare(square);
     }
   }
-}
-
-mineSweeperBoard.addEventListener("click", (e) => {
-  clickSquare(e);
 });
 
-/* This function is called when the player right-clicks on a square. */
-function rightClick(e) {
+mineSweeperBoard.addEventListener("contextmenu", (e) => {
   /*
+    This function is called when the player right-clicks on a square.
+
     The function takes the square button as an argument and toggles its flag status.
 
     If the square is already flagged, the flag is removed.
@@ -227,9 +225,9 @@ function rightClick(e) {
   if (target.classList.contains("square")) {
     let square = selectMineWithNumber(Number(target.dataset.number));
     /*
-        Check if the square is already open or shows a mine.
-        If it is, do nothing.
-      */
+      Check if the square is already open or shows a mine.
+      If it is, do nothing.
+    */
     if (
       square.classList.contains("open") ||
       square.classList.contains("showMine")
@@ -238,8 +236,4 @@ function rightClick(e) {
       square.classList.toggle("flag");
     }
   }
-}
-
-mineSweeperBoard.addEventListener("contextmenu", (e) => {
-  rightClick(e);
 });
