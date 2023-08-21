@@ -146,6 +146,17 @@ function loseGame() {
   alert("Game ended");
   $.body.classList.add("lose");
 }
+function winGame() {
+  alert("win");
+  $.body.classList.add("win");
+}
+
+function checkWin() {
+  let allOpenSquares = $.querySelectorAll(".open");
+  if (row * column - mineCount === allOpenSquares.length) {
+    winGame();
+  }
+}
 
 /* This function shows all the mines on the board. */
 function showMine() {
@@ -218,6 +229,7 @@ mineSweeperBoard.addEventListener("click", (e) => {
         Call the processSquare function with the square clicked
      */
       processSquare(square);
+      checkWin();
     }
   }
 });
