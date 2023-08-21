@@ -7,6 +7,7 @@ const mineSweeperBoard = $.querySelector(".mineSweeper__board");
 let row = 9;
 let column = 9;
 let mineCount = 10;
+let flagCount = null;
 let minePosition = [];
 
 renderSquare();
@@ -28,6 +29,8 @@ function renderSquare() {
       square.style.height = getComputedStyle(square).getPropertyValue("width");
     }
   }
+
+  flagCount = mineCount;
   randomMinePosition();
 }
 
@@ -152,6 +155,10 @@ function showMine() {
   });
 }
 
+function flagEnded() {
+  console.log("flag ended " + flagCount);
+}
+
 // Currently unused
 function selectMine(position) {
   return document.querySelector(
@@ -226,6 +233,11 @@ mineSweeperBoard.addEventListener("contextmenu", (e) => {
     If the square is not flagged, a flag is added to it.
   */
   e.preventDefault();
+
+  if (flagCount === 0) {
+    flagEnded();
+    return;
+  }
   let target = e.target;
   if (target.classList.contains("square")) {
     let square = selectMineWithNumber(Number(target.dataset.number));
@@ -240,7 +252,13 @@ mineSweeperBoard.addEventListener("contextmenu", (e) => {
       $.body.classList.contains("lose")
     ) {
     } else {
-      square.classList.toggle("flag");
+      if (square.classList.contains("flag")) {
+        square.classList.remove("flag");
+        flagCount++;
+      } else {
+        square.classList.add("flag");
+        flagCount--;
+      }
     }
   }
 });
