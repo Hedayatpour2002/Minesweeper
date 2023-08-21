@@ -3,6 +3,10 @@ const $ = document;
 
 const mineSweeper = $.querySelector(".mineSweeper");
 const mineSweeperBoard = $.querySelector(".mineSweeper__board");
+const result = $.querySelector(".result");
+const restartElem = $.querySelector(".restart");
+const levelOptions = $.querySelector(".options");
+const levelArrow = $.querySelector(".level__svg");
 
 let row = 9;
 let column = 9;
@@ -14,6 +18,7 @@ renderSquare();
 
 /* This function creates a square button for each row and column. */
 function renderSquare() {
+  mineSweeperBoard.innerHTML = "";
   let squareWidth = 100 / column;
   for (let i = 0; i < row; i++) {
     for (let j = 0; j < column; j++) {
@@ -26,7 +31,13 @@ function renderSquare() {
 
       square.style.width = `${squareWidth}%`;
       mineSweeperBoard.appendChild(square);
-      square.style.height = getComputedStyle(square).getPropertyValue("width");
+      let height = getComputedStyle(square).getPropertyValue("width");
+      square.style.height = height;
+      if (parseInt(height) > 72) {
+        square.style.width = "7.2rem";
+        square.style.height = "7.2rem";
+        mineSweeperBoard.style.maxWidth = 7.2 * column + "rem";
+      }
     }
   }
 
@@ -36,6 +47,7 @@ function renderSquare() {
 
 /* This function randomly generates the positions of the mines. */
 function randomMinePosition() {
+  minePosition = [];
   for (let i = 0; i < mineCount; i++) {
     let newPosition = {
       row: Math.floor(Math.random() * row),
@@ -143,12 +155,12 @@ function processSquare(square) {
 }
 
 function loseGame() {
-  alert("Game ended");
   $.body.classList.add("lose");
+  result.innerHTML = "you lost!";
 }
 function winGame() {
-  alert("win");
   $.body.classList.add("win");
+  result.innerHTML = "you won!";
 }
 
 function checkWin() {
@@ -206,8 +218,10 @@ mineSweeperBoard.addEventListener("click", (e) => {
       minePosition.some((mine) => {
         return mine.number === number;
       }) &&
-      !square.classList.contains("flag")
+      !square.classList.contains("flag") &&
+      !square.classList.contains("showMine")
     ) {
+      square.classList.add("open");
       showMine();
       loseGame();
       return;
@@ -246,10 +260,6 @@ mineSweeperBoard.addEventListener("contextmenu", (e) => {
   */
   e.preventDefault();
 
-  if (flagCount === 0) {
-    flagEnded();
-    return;
-  }
   let target = e.target;
   if (target.classList.contains("square")) {
     let square = selectMineWithNumber(Number(target.dataset.number));
@@ -268,9 +278,51 @@ mineSweeperBoard.addEventListener("contextmenu", (e) => {
         square.classList.remove("flag");
         flagCount++;
       } else {
+        if (flagCount === 0) {
+          flagEnded();
+          return;
+        }
         square.classList.add("flag");
         flagCount--;
       }
     }
+  }
+});
+
+window.addEventListener("resize", () => {
+  let squares = $.querySelectorAll(".square");
+  let height = getComputedStyle(squares[0]).getPropertyValue("width");
+  squares.forEach((square) => {
+    square.style.height = height;
+  });
+});
+
+restartElem.addEventListener("click", restartFun);
+function restartFun() {
+  renderSquare();
+  $.body.classList = "";
+}
+
+levelOptions.addEventListener("click", (e) => {
+  let level = e.target.id;
+  if (level) {
+    if (level === "easy") {
+      row = 9;
+      column = 9;
+      mineCount = 10;
+      levelArrow.style.left = "23%";
+    } else if (level === "medium") {
+      row = 16;
+      column = 16;
+      mineCount = 40;
+      levelArrow.style.left = "50%";
+    } else if (level === "hard") {
+      row = 30;
+      column = 16;
+      mineCount = 99;
+      levelArrow.style.left = "78%";
+    }
+
+    restartFun();
   }
 });

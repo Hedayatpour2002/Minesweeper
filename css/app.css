@@ -18,6 +18,11 @@ body {
   --> Reset Style <-- 
 
 */
+button {
+  background-color: inherit;
+  font-family: inherit;
+  outline: none;
+}
 
 /* 
 
@@ -39,21 +44,155 @@ body {
 }
 
 .mineSweeper {
-  height: 100vh;
-  background-color: #bfbfbf;
+  min-height: 100vh;
+  margin-right: auto;
+  margin-left: auto;
+  max-width: 100rem;
+  font-family: "OdibeeSans";
+  padding-bottom: 2rem;
 }
+
+.logo__title {
+  font-family: "Anima";
+  font-size: 10rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+.wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+  text-transform: capitalize;
+}
+.restart {
+  width: 19rem;
+  font-size: 2rem;
+  padding: 1rem 3rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.restart:hover {
+  border-radius: 1.5rem;
+}
+
+/* level */
+.level {
+  width: 19rem;
+  border-width: 2px;
+  border-style: outset;
+  border-color: buttonborder;
+  border-image: initial;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 1rem 3rem 1.5rem;
+  transition: all 0.2s;
+  position: relative;
+}
+.level:hover {
+  border-radius: 1.5rem;
+}
+.level__title {
+  margin-top: -17%;
+  background-color: #fff;
+  font-size: 2rem;
+}
+.options {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+}
+.option {
+  cursor: pointer;
+}
+.level__svg {
+  position: absolute;
+  top: 70%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.5s;
+  left: 23%;
+  /* left: 50%; */
+  /* left: 78%; */
+  transform: translate(-50%);
+}
+.level__arrow {
+  width: 2rem;
+}
+.level__circle {
+  position: absolute;
+  bottom: -30%;
+  transition: all 2s;
+}
+.level:hover .level__arrow {
+  animation: arrowLevel 2s infinite linear;
+}
+@keyframes arrowLevel {
+  from {
+    transform: translateY(0.3rem);
+  }
+  to {
+    transform: translateY(-0.3rem);
+  }
+}
+.level:hover .level__circle {
+  animation: rotate360 2s infinite linear;
+}
+@keyframes rotate360 {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* result */
+.result {
+  display: none;
+  text-align: center;
+  font-size: 7rem;
+  text-transform: uppercase;
+}
+.lose .result,
+.win .result {
+  display: block;
+}
+
+/* board */
 .mineSweeper__board {
   display: flex;
   flex-wrap: wrap;
+  margin: 2rem 0;
+  margin-right: auto;
+  margin-left: auto;
 }
 .square {
-}
-.showMine {
-  background-color: red;
-}
-.flag {
-  background-color: yellow;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  background-image: url("../images/squareBG/default.svg");
 }
 .open {
+  background-image: url("../images/squareBG/click-down.svg");
+}
+.showMine {
+  background-image: url("../images/squareBG/min-default.svg");
+}
+.flag {
+  background-image: url("../images/squareBG/flag.svg");
+}
+.flag.showMine {
   background-color: green;
+  background-image: url("../images/squareBG/mine.svg");
+}
+.open.showMine {
+  background-color: red;
+  background-image: url("../images/squareBG/mine.svg");
 }

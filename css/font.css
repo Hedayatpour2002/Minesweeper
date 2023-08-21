@@ -1,4 +1,8 @@
 @font-face {
-  font-family: "";
-  src: url("../fonts/");
+  font-family: "Anima";
+  src: url("../fonts/AnimaRegular.otf");
+}
+@font-face {
+  font-family: "OdibeeSans";
+  src: url("../fonts/OdibeeSans-Regular.ttf");
 }
