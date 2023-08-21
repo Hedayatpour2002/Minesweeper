@@ -178,6 +178,8 @@ mineSweeperBoard.addEventListener("click", (e) => {
   let target = e.target;
   if (target.classList.contains("square")) {
     let number = Number(target.dataset.number);
+    let square = selectMineWithNumber(number);
+
     /*
       Check if the square contains a mine.
       If it does, end the game.
@@ -185,14 +187,14 @@ mineSweeperBoard.addEventListener("click", (e) => {
     if (
       minePosition.some((mine) => {
         return mine.number === number;
-      })
+      }) &&
+      !square.classList.contains("flag")
     ) {
       showMine();
       loseGame();
       return;
     }
 
-    let square = selectMineWithNumber(number);
     /*
       Check if the square is already open or flagged.
       If it is, do nothing.
