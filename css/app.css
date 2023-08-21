@@ -42,7 +42,7 @@ body {
   height: 100vh;
   background-color: #bfbfbf;
 }
-.mineSweeper__map {
+.mineSweeper__board {
   display: flex;
   flex-wrap: wrap;
 }
