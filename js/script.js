@@ -7,6 +7,8 @@ const result = $.querySelector(".result");
 const restartElem = $.querySelector(".restart");
 const levelOptions = $.querySelector(".options");
 const levelArrow = $.querySelector(".level__svg");
+let bomb = new Audio("../sounds/bomb.mp3");
+let win = new Audio("../sounds/win.ogg");
 
 let row = 9;
 let column = 9;
@@ -158,10 +160,12 @@ function processSquare(square) {
 function loseGame() {
   $.body.classList.add("lose");
   result.innerHTML = "you lost!";
+  bomb.play();
 }
 function winGame() {
   $.body.classList.add("win");
   result.innerHTML = "you won!";
+  win.play();
 }
 
 function checkWin() {
@@ -177,17 +181,6 @@ function showMine() {
     let mine = selectMineWithNumber(position.number);
     mine.classList.add("showMine");
   });
-}
-
-function flagEnded() {
-  console.log("flag ended " + flagCount);
-}
-
-// Currently unused
-function selectMine(position) {
-  return document.querySelector(
-    `[data-number = "${position.row}${position.column}"]`
-  );
 }
 
 /* This function returns the mine button with the specified number. */
@@ -279,10 +272,8 @@ mineSweeperBoard.addEventListener("contextmenu", (e) => {
         square.classList.remove("flag");
         flagCount++;
       } else {
-        if (flagCount === 0) {
-          flagEnded();
-          return;
-        }
+        if (flagCount === 0) return;
+
         square.classList.add("flag");
         flagCount--;
       }
@@ -302,6 +293,8 @@ window.addEventListener("resize", () => {
 /* restart the game */
 restartElem.addEventListener("click", restartFun);
 function restartFun() {
+  bomb.load();
+  win.load();
   renderSquare();
   $.body.classList = "";
 }
