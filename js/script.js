@@ -289,6 +289,7 @@ mineSweeperBoard.addEventListener("contextmenu", (e) => {
   }
 });
 
+/* When the browser window is resized, this function sets the height of all squares on the page to their width. */
 window.addEventListener("resize", () => {
   let squares = $.querySelectorAll(".square");
   let height = getComputedStyle(squares[0]).getPropertyValue("width");
@@ -297,12 +298,14 @@ window.addEventListener("resize", () => {
   });
 });
 
+/* restart the game */
 restartElem.addEventListener("click", restartFun);
 function restartFun() {
   renderSquare();
   $.body.classList = "";
 }
 
+/* Sets the game level. */
 levelOptions.addEventListener("click", (e) => {
   let level = e.target.id;
   if (level) {
