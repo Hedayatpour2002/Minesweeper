@@ -7,8 +7,7 @@ Minesweeper is a classic puzzle game where the player must uncover all of the sa
 
 ## Demo
 
-[link](https://sweet-macaron-e5fb97.netlify.app/)
-
+[Check the live demo here ⭐](https://sweet-macaron-e5fb97.netlify.app/)
 
 
 ## How to Play
