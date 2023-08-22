@@ -150,6 +150,7 @@ function processSquare(square) {
       stack.push(...aroundSquares);
     } else {
       currentSquare.innerHTML = aroundMineCount;
+      currentSquare.classList.add(`min-count-${aroundMineCount}`);
     }
   }
 }

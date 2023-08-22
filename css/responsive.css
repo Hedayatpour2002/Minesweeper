@@ -1,16 +1,33 @@
+@media (min-width: 420px) {
+  .wrapper {
+    justify-content: space-between;
+  }
+  .logo__title {
+    font-size: 10rem;
+  }
+}
 @media (min-width: 576px) {
   .container {
     width: 540px;
+  }
+  .square {
+    font-size: 2rem;
   }
 }
 @media (min-width: 768px) {
   .container {
     width: 720px;
   }
+  .square {
+    font-size: 3rem;
+  }
 }
 @media (min-width: 992px) {
   .container {
     width: 960px;
+  }
+  .square {
+    font-size: 3.5rem;
   }
 }
 @media (min-width: 1200px) {

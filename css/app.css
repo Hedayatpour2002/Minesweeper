@@ -44,7 +44,7 @@ button {
 }
 
 .mineSweeper {
-  min-height: 100vh;
+  /* min-height: 100vh; */
   margin-right: auto;
   margin-left: auto;
   max-width: 100rem;
@@ -54,16 +54,17 @@ button {
 
 .logo__title {
   font-family: "Anima";
-  font-size: 10rem;
+  font-size: 7rem;
   font-weight: bold;
   text-align: center;
+  margin-top: -3rem;
 }
 
 .wrapper {
   display: flex;
   flex-wrap: wrap;
   align-items: flex-end;
-  justify-content: space-between;
+  justify-content: center;
   gap: 1rem;
   text-transform: capitalize;
 }
@@ -73,8 +74,6 @@ button {
   padding: 1rem 3rem;
   cursor: pointer;
   transition: all 0.2s;
-}
-.restart:hover {
   border-radius: 1.5rem;
 }
 
@@ -92,8 +91,6 @@ button {
   padding: 1rem 3rem 1.5rem;
   transition: all 0.2s;
   position: relative;
-}
-.level:hover {
   border-radius: 1.5rem;
 }
 .level__title {
@@ -118,8 +115,6 @@ button {
   justify-content: center;
   transition: all 0.5s;
   left: 23%;
-  /* left: 50%; */
-  /* left: 78%; */
   transform: translate(-50%);
 }
 .level__arrow {
@@ -177,22 +172,54 @@ button {
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
-  background-image: url("../images/squareBG/default.svg");
+  background-image: url("../images/default.svg");
+  font-weight: bold;
 }
 .open {
-  background-image: url("../images/squareBG/click-down.svg");
+  background-image: url("../images/click-down.svg");
 }
 .showMine {
-  background-image: url("../images/squareBG/min-default.svg");
+  background-image: url("../images/min-default.svg");
 }
 .flag {
-  background-image: url("../images/squareBG/flag.svg");
+  background-image: url("../images/flag.svg");
 }
 .flag.showMine {
   background-color: green;
-  background-image: url("../images/squareBG/mine.svg");
+  background-image: url("../images/mine.svg");
 }
 .open.showMine {
   background-color: red;
-  background-image: url("../images/squareBG/mine.svg");
+  background-image: url("../images/mine.svg");
+}
+/* min count bg */
+.min-count-1 {
+  color: #0b24fb;
+}
+
+.min-count-2 {
+  color: #0e7a11;
+}
+
+.min-count-3 {
+  color: #fc0d1b;
+}
+
+.min-count-4 {
+  color: #020b79;
+}
+
+.min-count-5 {
+  color: #852123;
+}
+
+.min-count-6 {
+  color: #278786;
+}
+
+.min-count-7 {
+  color: #000;
+}
+.min-count-8 {
+  color: #878787;
 }
