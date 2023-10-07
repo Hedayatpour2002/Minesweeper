@@ -13,6 +13,13 @@ body {
   font-size: 1.6rem;
 }
 
+.particles-js-canvas-el {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
 /* 
 
   --> Reset Style <-- 
@@ -51,7 +58,9 @@ button {
   font-family: "OdibeeSans";
   padding-bottom: 2rem;
 }
-
+.logo{
+  position: relative;
+}
 .logo__title {
   font-family: "Anima";
   font-size: 7rem;
